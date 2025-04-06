@@ -1,4 +1,5 @@
 
+import React from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -26,101 +27,106 @@ import StudentStore from "./pages/student/Store";
 import StudentHistory from "./pages/student/History";
 import StudentProfile from "./pages/student/Profile";
 
+// Create a client
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <AuthProvider>
-        <StoreProvider>
-          <HistoryProvider>
-            <Toaster />
-            <Sonner />
-            <BrowserRouter>
-              <Routes>
-                {/* Public Route */}
-                <Route path="/login" element={<Login />} />
-                
-                {/* Redirect root to login */}
-                <Route path="/" element={<Navigate to="/login" replace />} />
-                
-                {/* Admin Routes */}
-                <Route
-                  path="/admin/dashboard"
-                  element={
-                    <ProtectedRoute requiredRole="admin">
-                      <AdminDashboard />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/students"
-                  element={
-                    <ProtectedRoute requiredRole="admin">
-                      <AdminStudents />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/store"
-                  element={
-                    <ProtectedRoute requiredRole="admin">
-                      <AdminStore />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/history"
-                  element={
-                    <ProtectedRoute requiredRole="admin">
-                      <AdminHistory />
-                    </ProtectedRoute>
-                  }
-                />
-                
-                {/* Student Routes */}
-                <Route
-                  path="/student/dashboard"
-                  element={
-                    <ProtectedRoute requiredRole="student">
-                      <StudentDashboard />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/student/store"
-                  element={
-                    <ProtectedRoute requiredRole="student">
-                      <StudentStore />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/student/history"
-                  element={
-                    <ProtectedRoute requiredRole="student">
-                      <StudentHistory />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/student/profile"
-                  element={
-                    <ProtectedRoute requiredRole="student">
-                      <StudentProfile />
-                    </ProtectedRoute>
-                  }
-                />
-                
-                {/* Catch-all route */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </BrowserRouter>
-          </HistoryProvider>
-        </StoreProvider>
-      </AuthProvider>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  return (
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <AuthProvider>
+            <StoreProvider>
+              <HistoryProvider>
+                <Toaster />
+                <Sonner />
+                <BrowserRouter>
+                  <Routes>
+                    {/* Public Route */}
+                    <Route path="/login" element={<Login />} />
+                    
+                    {/* Redirect root to login */}
+                    <Route path="/" element={<Navigate to="/login" replace />} />
+                    
+                    {/* Admin Routes */}
+                    <Route
+                      path="/admin/dashboard"
+                      element={
+                        <ProtectedRoute requiredRole="admin">
+                          <AdminDashboard />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/admin/students"
+                      element={
+                        <ProtectedRoute requiredRole="admin">
+                          <AdminStudents />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/admin/store"
+                      element={
+                        <ProtectedRoute requiredRole="admin">
+                          <AdminStore />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/admin/history"
+                      element={
+                        <ProtectedRoute requiredRole="admin">
+                          <AdminHistory />
+                        </ProtectedRoute>
+                      }
+                    />
+                    
+                    {/* Student Routes */}
+                    <Route
+                      path="/student/dashboard"
+                      element={
+                        <ProtectedRoute requiredRole="student">
+                          <StudentDashboard />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/student/store"
+                      element={
+                        <ProtectedRoute requiredRole="student">
+                          <StudentStore />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/student/history"
+                      element={
+                        <ProtectedRoute requiredRole="student">
+                          <StudentHistory />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/student/profile"
+                      element={
+                        <ProtectedRoute requiredRole="student">
+                          <StudentProfile />
+                        </ProtectedRoute>
+                      }
+                    />
+                    
+                    {/* Catch-all route */}
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </BrowserRouter>
+              </HistoryProvider>
+            </StoreProvider>
+          </AuthProvider>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </React.StrictMode>
+  );
+};
 
 export default App;
